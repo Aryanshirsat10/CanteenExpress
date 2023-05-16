@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="signup.css">
+    <title>Sign Up</title>
+</head>
+<body>
+    <div class="form-box">
+        <form class="form">
+            <span class="title">Sign up</span>
+            <span class="subtitle">Create a free account with your email.</span>
+            <div class="form-container">
+              <input type="text" class="input" placeholder="Full Name">
+                    <input type="email" class="input" placeholder="Email" id="email1">
+                    <input type="password" class="input" placeholder="Password" id="pass">
+            </div>
+            <button onclick="ValidateEmail(); ValidatePassword()">Sign up</button>
+        </form>
+        </div>
+</body>
+<script>
+    function ValidateEmail(){
+    var email=document.getElementById("email1").value;
+    var mailFormat= /^[a-zA-Z0-9._%+-]+@somaiya\.edu$/;
+    if(email.match(mailFormat))
+    {
+    alert("Valid email address!");
+    return true;
+    }
+    else{
+    alert("Invalid Email");
+    return false;
+    }
+    }
+function ValidatePassword(){
+    var password=document.getElementById("pass");
+    if(password="")
+    {
+    alert("Please fill in a password");
+    return false;
+    }
+    if(password.length<8)
+    {
+    alert("password should have more than 8 chars");
+    return false;
+    }
+    }
+</script>
+</html>

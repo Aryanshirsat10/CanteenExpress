@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /* Center align the heading */
+h1 {
+  text-align: center;
+}
+
+/* Style the table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+/* Style the table header */
+th {
+  background-color: #f2f2f2;
+  text-align: left;
+  padding: 8px;
+}
+
+/* Style the table cells */
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+/* Style the total row */
+.total-row {
+  font-weight: bold;
+  background-color: #f2f2f2;
+}
+
+/* Style the checkout button */
+.checkout-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+</style>
+<body>
+    <h2>My Orders</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Order Number</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Items</th>
+            <th>Total</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Loop through orders retrieved from API and display them in the table -->
+          <tr>
+            <td>1234</td>
+            <td>2023-05-01</td>
+            <td>12:30 PM</td>
+            <td>Burger, Fries, Coke</td>
+            <td>$10.00</td>
+            <td>Delivered</td>
+          </tr>
+          <tr>
+            <td>5678</td>
+            <td>2023-05-02</td>
+            <td>1:00 PM</td>
+            <td>Chicken Wrap, Salad, Water</td>
+            <td>$8.50</td>
+            <td>Preparing</td>
+          </tr>
+          <!-- End loop -->
+        </tbody>
+      </table>
+</body>
+<script>
+    // Function to calculate the total price of the order
+function calculateTotal() {
+  let total = 0;
+  // Loop through all the table rows except the last one (which contains the total)
+  const rows = document.querySelectorAll('table tr:not(:last-child)');
+  rows.forEach(row => {
+    // Get the price and quantity of the current row
+    const price = Number(row.querySelector('.price').textContent);
+    const quantity = Number(row.querySelector('.quantity').value);
+    // Calculate the total for this row and add it to the total for the entire order
+    total += price * quantity;
+  });
+  // Display the total in the last row of the table
+  document.querySelector('.total-row .total').textContent = total.toFixed(2);
+}
+
+// Attach event listeners to the quantity input fields
+const quantityFields = document.querySelectorAll('.quantity');
+quantityFields.forEach(field => {
+  field.addEventListener('input', calculateTotal);
+});
+
+// Attach event listener to the checkout button
+const checkoutButton = document.querySelector('.checkout-button');
+checkoutButton.addEventListener('click', () => {
+  alert('Thank you for your order!');
+});
+
+</script>
+</html>
